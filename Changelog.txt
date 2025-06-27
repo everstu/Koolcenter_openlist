@@ -1,0 +1,9 @@
+KoolCenter OpenList Changelog for HND platform
+===========================================
+4.0.3
+   - note	OpenList插件发布，版本号从4.0.3开始
+       		1. 软件中心的OpenList程序版本将同步官方二进制版本。
+       		2. 因alist陷入信任危机，OpenList插件将替代Alist插件。
+       		3. 首次安装OpenList将尝试迁移Alist配置到OpenList。
+   - update	更新OpenList二进制至v4.0.3版本（armV7l版本，采用upx --lzma --brute压缩）
+
