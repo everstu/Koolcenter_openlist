@@ -1,5 +1,9 @@
 KoolCenter OpenList Changelog for HND platform
 ===========================================
+4.0.5
+   - fix	修复运行日志可能会导致路由器崩溃的问题
+   - update	更新OpenList二进制至v4.0.5版本
+
 4.0.3
    - note	OpenList插件发布，版本号从4.0.3开始
        		1. 软件中心的OpenList程序版本将同步官方二进制版本。
