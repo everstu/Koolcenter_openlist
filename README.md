@@ -10,7 +10,7 @@ https://github.com/OpenListTeam/OpenList
 
 [官方TG交流群](https://t.me/OpenListTeam) `插件正常启动后的使用问题请查看文档或去官方TG交流群寻求帮助`
 
-文档 https://www.oplist.org/zh/
+文档 https://www.oplist.org
 
 ---
 

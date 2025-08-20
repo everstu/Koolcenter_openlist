@@ -941,7 +941,7 @@ function mOut(obj){
 										<div style="margin:10px 0 0 5px">
 											<li>由于openlist需要路由器较好性能，本插件仅支持hnd平台，AX32机型请慎重使用！</li>
 											<li>建议挂载U盘并配合usb2jffs和虚拟内存插件一起食用，口感更佳，否则可能会出现莫名的问题。</li>
-											<li>如有不懂，特别是openlist配置文件的填写，请查看OpenList官方文档<a href="https://www.oplist.org/zh/" target="_blank"><em>点这里看文档</em></a></li>
+											<li>如有不懂，特别是openlist配置文件的填写，请查看OpenList官方文档<a href="https://www.oplist.org" target="_blank"><em>点这里看文档</em></a></li>
 											<li>插件使用有任何问题请加入<a href="https://t.me/xbchat" target="_blank"><em><u>koolcenter TG群</u></em></a>或<a href="https://t.me/meilinchajian" target="_blank"><em><u>Mc Chat TG群</u></em></a>联系 @fiswonder<br></li>
 										</div>
 									</td>
