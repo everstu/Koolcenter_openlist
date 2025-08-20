@@ -96,6 +96,15 @@ check_usb2jffs_used_status() {
     echo "0" #未安装或未挂载
   fi
 }
+# 获取或生成JWT密钥
+get_jwt_secret() {
+	local jwt_secret=$(dbus get openlist_jwt_secret)
+	if [ -z "${jwt_secret}" ]; then
+		jwt_secret=$(openssl rand -hex 8)
+		dbus set openlist_jwt_secret=${jwt_secret}
+	fi
+	echo $jwt_secret
+}
 
 write_backup_job() {
   sed -i '/openlist_backupdb/d' /var/spool/cron/crontabs/* >/dev/null 2>&1
@@ -215,7 +224,7 @@ makeConfig() {
       # 非url，清空后使用/
       echo_date "⚠️CDN格式错误！这将导致面板无法访问！"
       echo_date "⚠️本次插件启动不会将此CDN写入配置，下次请更正，继续..."
-      configCdn='/'
+      configCdn=''
       dbus set openlist_cdn_error=1
     else
       #检测是否为饿了么CDN如果为饿了么CDN则强行替换成本地静态资源
@@ -223,12 +232,12 @@ makeConfig() {
       if [ -n "${MATCH_1}" ]; then
         echo_date "⚠️检测到你配置了饿了么CDN，当前饿了么CDN已经失效！这将导致面板无法访问！"
         echo_date "⚠️本次插件启动不会将此CDN写入配置，下次请更正，继续..."
-        configCdn='/'
+        configCdn=''
         dbus set openlist_cdn_error=1
       fi
     fi
   else
-    configCdn='/'
+    configCdn=''
   fi
 
   # 初始化https，条件：
@@ -394,10 +403,12 @@ makeConfig() {
   else
     BINDADDR="0.0.0.0"
   fi
+	local JWT_SECRET=$(get_jwt_secret)
 
+	# 生成配置文件
   config='{
 "force":false,
-"jwt_secret":"random generated",
+"jwt_secret":"'${JWT_SECRET}'",
 "token_expires_in":'${configTokenExpiresIn}',
 "site_url":"'${configSiteUrl}'",
 "cdn":"'${configCdn}'",
