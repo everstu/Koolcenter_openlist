@@ -1,5 +1,8 @@
 KoolCenter OpenList Changelog for HND platform
 ===========================================
+4.1.1-1
+   - fix	初始化和重置密码失效的问题
+
 4.1.1
    - update	更新OpenList二进制至v4.1.1版本
    - fix	v4.1.1版本CDN不兼容配置，jwt密钥新增随机生成

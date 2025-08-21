@@ -23,6 +23,8 @@ configCertFile=''
 configKeyFile=''
 configDelayedStart=0
 configCheckSslCert=true
+ADMIN_USER=
+ADMIN_PASS=
 
 set_lock() {
   exec 233>${LOCK_FILE}
@@ -457,6 +459,12 @@ check_enable_plugin() {
   echo_date "➡️"$(dbus listall | grep 'enable=1' | awk -F '_' '!a[$1]++' | awk -F '_' '{print "dbus get softcenter_module_"$1"_title"|"sh"}' | tr '\n' ',' | sed 's/,$/ /')
 }
 
+make_random_password(){
+    /koolshare/bin/openlist --data ${OpenListBaseDir} admin random >${OpenListBaseDir}/admin.account 2>&1
+    ADMIN_USER=$(cat ${OpenListBaseDir}/admin.account | grep "username:" | awk '{print $NF}')
+    ADMIN_PASS=$(cat ${OpenListBaseDir}/admin.account | grep "password:" | awk '{print $NF}')
+}
+
 #检查内存是否合规
 check_memory() {
   local swap_size=$(free | grep Swap | awk '{print $2}')
@@ -550,16 +558,14 @@ start() {
   if [ ! -f "${OpenListBaseDir}/data.db" ]; then
     echo_date "ℹ️检测到首次启动插件，生成用户和密码..."
     echo_date "ℹ️初始化操作较耗时，请耐心等待..."
-    /koolshare/bin/openlist --data ${OpenListBaseDir} admin random >${OpenListBaseDir}/admin.account 2>&1
-    local USER=$(cat ${OpenListBaseDir}/admin.account | grep -E "^.*INFO.*username" | tail -n 1 | awk '{print $NF}')
-    local PASS=$(cat ${OpenListBaseDir}/admin.account | grep -E "^.*INFO.*password" | tail -n 1 | awk '{print $NF}')
-    if [ -n "${USER}" -a -n "${PASS}" ]; then
+    make_random_password
+    if [ -n "${ADMIN_USER}" -a -n "${ADMIN_PASS}" ]; then
       echo_date "---------------------------------"
-      echo_date "😛 OpenList 面板用户：${USER}"
-      echo_date "🔑 OpenList 面板密码：${PASS}"
+      echo_date "😛 OpenList 面板用户：${ADMIN_USER}"
+      echo_date "🔑 OpenList 面板密码：${ADMIN_PASS}"
       echo_date "---------------------------------"
-      dbus set openlist_user=${USER}
-      dbus set openlist_pass=${PASS}
+      dbus set openlist_user=${ADMIN_USER}
+      dbus set openlist_pass=${ADMIN_PASS}
     fi
   fi
 
@@ -694,16 +700,14 @@ start_backup() {
 random_password() {
   # 1. 重新生成密码
   echo_date "🔍重新生成 OpenList 面板的用户和随机密码..."
-  /koolshare/bin/openlist --data ${OpenListBaseDir} admin random > ${OpenListBaseDir}/admin.account 2>&1
-  local USER=$(cat ${OpenListBaseDir}/admin.account | grep -E "^.*INFO.*username" | tail -n 1 | awk '{print $NF}')
-  local PASS=$(cat ${OpenListBaseDir}/admin.account | grep -E "^.*INFO.*password" | tail -n 1 | awk '{print $NF}')
-  if [ -n "${USER}" -a -n "${PASS}" ]; then
+  make_random_password
+  if [ -n "${ADMIN_USER}" -a -n "${ADMIN_PASS}" ]; then
     echo_date "---------------------------------"
-    echo_date "😛 OpenList 面板用户：${USER}"
-    echo_date "🔑 OpenList 面板密码：${PASS}"
+    echo_date "😛 OpenList 面板用户：${ADMIN_USER}"
+    echo_date "🔑 OpenList 面板密码：${ADMIN_PASS}"
     echo_date "---------------------------------"
-    dbus set openlist_user=${USER}
-    dbus set openlist_pass=${PASS}
+    dbus set openlist_user=${ADMIN_USER}
+    dbus set openlist_pass=${ADMIN_PASS}
   else
     echo_date "⚠️面板账号密码获取失败！请重启路由后重试！"
   fi
