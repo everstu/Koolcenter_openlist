@@ -126,25 +126,25 @@ function get_dbus_data(){
 function pannel_access(){
     let protocol,hostname,webUiHref,port;
 	if(dbus["openlist_enable"] == "1"){
-		port = dbus["openlist_port"];
-		protocol = window.location.protocol;
-        if(dbus['openlist_https'] == '1' && dbus['openlist_open_https_port'] == '1'){
-            port = dbus["openlist_https_port"];
-            protocol = 'https:';
-        }
-
-		hostname = document.domain;
-		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
+		var protocol = "http:";
+		var hostname = document.domain;
+		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.gd.ddnsto.com') != -1 || hostname.indexOf('.x.ddnsto.com') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
+			protocol = window.location.protocol;//如果是走的ddnsto则不管是否开启公网开关。
 			if(hostname.indexOf('.kooldns.cn') != -1){
-				hostname = hostname.replace('.kooldns.cn','-openlist.kooldns.cn');
+				hostname = hostname.replace('.kooldns.cn','-olist.kooldns.cn');
+			}else if(hostname.indexOf('.gd.ddnsto.com') != -1){
+				hostname = hostname.replace('.gd.ddnsto.com','-olist.gd.ddnsto.com');
+			}else if(hostname.indexOf('.x.ddnsto.com') != -1){
+				hostname = hostname.replace('.x.ddnsto.com','-olist.x.ddnsto.com');
 			}else if(hostname.indexOf('.ddnsto.com') != -1){
-				hostname = hostname.replace('.ddnsto.com','-openlist.ddnsto.com');
+				hostname = hostname.replace('.ddnsto.com','-olist.ddnsto.com');
 			}else{
-				hostname = hostname.replace('.tocmcc.cn','-openlist.tocmcc.cn');
+				hostname = hostname.replace('.tocmcc.cn','-olist.tocmcc.cn');
 			}
 
-			webUiHref = window.location.protocol + "//" + hostname;
+			webUiHref = protocol + "//" + hostname;
 		}else{
+			port = dbus["openlist_port"];
 			webUiHref = protocol + "//" + window.location.hostname;
             if(port){
                 webUiHref += ":" + port;
@@ -957,4 +957,3 @@ function mOut(obj){
 	<div id="footer"></div>
 </body>
 </html>
-
