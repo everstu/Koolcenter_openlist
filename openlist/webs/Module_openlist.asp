@@ -126,8 +126,8 @@ function get_dbus_data(){
 function pannel_access(){
     let protocol,hostname,webUiHref,port;
 	if(dbus["openlist_enable"] == "1"){
-		var protocol = "http:";
-		var hostname = document.domain;
+		protocol = "http:";
+	    hostname = document.domain;
 		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.gd.ddnsto.com') != -1 || hostname.indexOf('.x.ddnsto.com') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
 			protocol = window.location.protocol;//如果是走的ddnsto则不管是否开启公网开关。
 			if(hostname.indexOf('.kooldns.cn') != -1){
