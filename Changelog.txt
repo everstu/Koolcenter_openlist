@@ -1,5 +1,8 @@
 KoolCenter OpenList Changelog for HND platform
 ===========================================
+4.2.1
+   - update 更新OpenList二进制至v4.2.1版本
+
 4.1.9
    - update 更新OpenList二进制至v4.1.9版本
    - fix 调整 OpenList 面板访问地址生成逻辑
@@ -34,4 +37,3 @@ KoolCenter OpenList Changelog for HND platform
        		2. 因alist陷入信任危机，OpenList插件将替代Alist插件。
        		3. 首次安装OpenList将尝试迁移Alist配置到OpenList。
    - update	更新OpenList二进制至v4.0.3版本（armV7l版本，采用upx --lzma --brute压缩）
-
