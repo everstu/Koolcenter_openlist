@@ -7,5 +7,5 @@
     "module": "openlist", 
     "tags": "云同步", 
     "title": "OpenList 文件列表", 
-    "version": "4.2.1"
+    "version": "4.2.2"
 }
