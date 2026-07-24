@@ -1,5 +1,8 @@
 KoolCenter OpenList Changelog for HND platform
 ===========================================
+4.2.4
+   - update 更新OpenList二进制至v4.2.4版本
+
 4.2.3
    - update 更新OpenList二进制至v4.2.3版本
 
