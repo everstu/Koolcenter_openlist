@@ -3,9 +3,9 @@
     "description": "OpenList 一个支持多种存储的文件列表程序，使用 Gin 和 Solidjs", 
     "home_url": "Module_openlist.asp", 
     "link": "https://github.com/everstu/Koolcenter_openlist", 
-    "md5": "3c59c578f000f3e6688eecbe7ace3b6a", 
+    "md5": "13638eb96aaccc1c12152e6ebb1e6573", 
     "module": "openlist", 
     "tags": "云同步", 
     "title": "OpenList 文件列表", 
-    "version": "4.2.7"
+    "version": "4.2.9"
 }
