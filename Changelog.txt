@@ -1,5 +1,8 @@
 KoolCenter OpenList Changelog for HND platform
 ===========================================
+4.2.10
+   - update 更新OpenList二进制至v4.2.10版本（musl ARMv7l 标准版，采用 upx --lzma --brute 压缩）
+
 4.2.9
    - update 更新OpenList二进制至v4.2.9版本
 
